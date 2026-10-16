@@ -40,12 +40,27 @@ siap dipakai lagi. Berlaku untuk kedua sisi (kiri/kanan).
 
 ## 2. Masuk mode bootloader (UF2)
 
-1. Cari tombol **reset** kecil di papan nice!nano (biasanya di sisi berlawanan
-   port USB, berupa tombol SMD kecil — tekan dengan ujung pulpen/kuku).
-2. Tekan **dua kali cepat** (double-tap, jeda < 0,5 detik).
+Ada dua cara — pilih yang paling mudah:
+
+**Cara A — tombol BOOT di keymap (tanpa menyentuh hardware, disarankan):**
+1. Tahan `LWR` (thumb kiri) + `RSE` (thumb kanan) **bersamaan** → masuk layer ADJ.
+2. Sambil menahan keduanya, tekan tombol `BOOT` (baris bawah, kiri atau kanan).
+3. Keyboard langsung masuk bootloader → drive `NICENANO` muncul.
+   (Perilaku `&bootloader` di nRF52840 masuk ke mode UF2 yang sama persis
+   seperti double-tap reset fisik.)
+
+**Cara B — tombol reset fisik (double-tap):**
+1. Tombol reset adalah **tombol SMD kecil di papan nice!nano itu sendiri**
+   (papan kecil tempat kabel USB-C menancap, bukan di PCB chocofi).
+   Bentuknya tombol taktil mini — tekan dengan kuku/ujung pulpen.
+2. Tekan **dua kali cepat** (jeda < 0,5 detik).
    - Satu kali tekan = restart biasa (bukan itu yang kita mau).
    - Dua kali cepat = masuk bootloader.
-3. Tandanya:
+3. Kalau tombolnya tertutup case: selipkan pinset logam dan sentuhkan
+   pin **RST ke GND** dua kali cepat (lubang pin di tepi papan nice!nano).
+   Fungsinya identik dengan double-tap tombol reset.
+
+Tandanya (kedua cara sama):
    - Keyboard berhenti mengetik sementara.
    - Muncul drive USB bernama **`NICENANO`** (di file manager, atau
      `/run/media/$USER/NICENANO` di terminal).
@@ -57,6 +72,11 @@ siap dipakai lagi. Berlaku untuk kedua sisi (kiri/kanan).
      Harus tertulis `Model: nice!nano`.
 4. Kalau drive tidak muncul: ulangi double-tap (timing-nya yang paling sering
    salah), coba port/kabel lain, pastikan kabelnya kabel data.
+
+> **`settings_reset` bukan tombol** — itu file firmware `.uf2` dari artifact CI
+> (langkah 3) yang di-flash seperti firmware biasa untuk menghapus bond BLE.
+> Untuk hapus bond ringan tanpa flash, pakai tombol `BTCLR` di layer LWR
+> (tahan `LWR`, tekan `BTCLR` baris bawah kiri).
 
 ## 3. Flash `settings_reset` (pembersih bond — sekali per sisi)
 
