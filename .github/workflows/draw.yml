@@ -1,0 +1,15 @@
+name: Draw keymaps
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "config/*.keymap"
+      - "keymap_drawer.config.yaml"
+jobs:
+  draw:
+    uses: caksoylar/keymap-drawer/.github/workflows/draw-zmk.yml@main
+    permissions:
+      contents: write
+    with:
+      parse_args: "chocofi:'--layer-names DEF LWR RSE ADJ'"
+      draw_args: "chocofi:'-k x0 y3 --ortho-layout -n cols-thumbs'"

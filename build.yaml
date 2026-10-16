@@ -18,4 +18,13 @@
 #     artifact-name: corne_left_with_studio
 #
 ---
-include: []
+include:
+  - board: nice_nano
+    shield: chocofi_left
+    snippet: studio-rpc-usb-uart
+    cmake-args: -DCONFIG_ZMK_STUDIO=y
+    artifact-name: chocofi_left_studio
+  - board: nice_nano
+    shield: chocofi_right
+  - board: nice_nano
+    shield: settings_reset
