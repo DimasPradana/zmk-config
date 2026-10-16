@@ -12,4 +12,3 @@ jobs:
       contents: write
     with:
       parse_args: "chocofi:'--layer-names DEF LWR RSE ADJ'"
-      draw_args: "chocofi:'-k x0 y3 --ortho-layout -n cols-thumbs'"
