@@ -323,6 +323,25 @@ Dibaca workflow draw via `config_path` default. Tanpa ini kedua binding ke-rende
 | Flash salah file ke sisi salah | Urutan flash di §5; bootloader selalu bisa double-tap reset |
 | Rollback penuh | Restore `CURRENT-left/right.uf2` dari folder backup |
 
+## 9. Forensik OLED (17-10-2026)
+
+- `backup-asli-kiri.UF2` identik (md5 sama) dengan `CURRENT-left.uf2` = firmware vendor lama.
+- String `ssd1306@3c` + `i2c@40003000` di firmware lama **hanya nama node devicetree**
+  (satu tabel dengan `adc@...`, `clock@...`), bukan bukti driver aktif.
+  Tidak ada string display/LVGL/I2C-driver di firmware lama → display hampir pasti
+  **tidak pernah di-enable** di firmware vendor (OLED lama juga gelap).
+- Build baru terkonfirmasi display ON via `.config` CI
+  (`CONFIG_ZMK_DISPLAY=y`, `CONFIG_SSD1306=y`, `CONFIG_DISPLAY=y`,
+  `CONFIG_LVGL=y v9.3`, `CONFIG_I2C=y`, status screen built-in).
+- Karena firmware sudah benar tapi OLED tetap gelap, kandidat penyebab:
+  1. Panel sebenarnya **SH1106** (umum di modul OLED murah) → butuh compatible
+     `sinowealth,sh1106`, bukan `solomon,ssd1306fb`.
+  2. Alamat I2C **0x3D** bukan 0x3C.
+  3. Resolusi panel **128x64** bukan 128x32.
+  4. OLED hanya terpasang di satu sisi / masalah daya/wiring.
+- Butuh info hardware: foto/tulisan di modul OLED (depan+belakang), sisi mana
+  yang ada OLED, dan konfirmasi firmware baru sudah aktif (tes homerow mods).
+
 ## 8. Fase Lanjutan (di luar scope plan ini)
 
 - Peripheral status screen kustom untuk OLED kanan.
