@@ -1,0 +1,6 @@
+# keymap-drawer config: custom labels for bindings the parser doesn't recognize.
+# Read by .github/workflows/draw.yml via the workflow's default `config_path`.
+parse_config:
+  raw_binding_map:
+    "&bootloader": "BOOT"
+    "&studio_unlock": "UNLOCK"
