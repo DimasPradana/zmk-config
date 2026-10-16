@@ -19,12 +19,12 @@
 #
 ---
 include:
-  - board: nice_nano
+  - board: nice_nano@1//zmk
     shield: chocofi_left
     snippet: studio-rpc-usb-uart
     cmake-args: -DCONFIG_ZMK_STUDIO=y
     artifact-name: chocofi_left_studio
-  - board: nice_nano
+  - board: nice_nano@1//zmk
     shield: chocofi_right
-  - board: nice_nano
+  - board: nice_nano@1//zmk
     shield: settings_reset
