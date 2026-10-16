@@ -323,7 +323,7 @@ Dibaca workflow draw via `config_path` default. Tanpa ini kedua binding ke-rende
 | Flash salah file ke sisi salah | Urutan flash di §5; bootloader selalu bisa double-tap reset |
 | Rollback penuh | Restore `CURRENT-left/right.uf2` dari folder backup |
 
-## 9. Forensik OLED (17-10-2026)
+## 8. Forensik OLED (17-10-2026)
 
 - `backup-asli-kiri.UF2` identik (md5 sama) dengan `CURRENT-left.uf2` = firmware vendor lama.
 - String `ssd1306@3c` + `i2c@40003000` di firmware lama **hanya nama node devicetree**
@@ -342,7 +342,7 @@ Dibaca workflow draw via `config_path` default. Tanpa ini kedua binding ke-rende
 - Butuh info hardware: foto/tulisan di modul OLED (depan+belakang), sisi mana
   yang ada OLED, dan konfirmasi firmware baru sudah aktif (tes homerow mods).
 
-## 8. Fase Lanjutan (di luar scope plan ini)
+## 9. Fase Lanjutan (di luar scope plan ini)
 
 - Peripheral status screen kustom untuk OLED kanan.
 - PNG export dari SVG (`rsvg-convert`).
