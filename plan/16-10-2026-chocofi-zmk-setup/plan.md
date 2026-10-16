@@ -64,8 +64,7 @@ zmk-config/
 │   ├── corne.conf         # tetap (backup fase awal)
 │   └── corne.keymap       # tetap (backup fase awal)
 ├── archive/corne/         # BARU (fase akhir: pindahkan 2 file corne)
-├── keymap_drawer/
-│   └── config.yaml        # BARU (definisi fisik chocofi 3x5+3)
+├── keymap_drawer.config.yaml   # BARU (parse_config.raw_binding_map: BOOT/UNLOCK)
 └── plan/16-10-2026-chocofi-zmk-setup/plan.md  # file ini
 ```
 
@@ -275,9 +274,16 @@ jobs:
       contents: write
 ```
 
-### 4.12 `keymap_drawer/config.yaml` (baru)
+### 4.12 `keymap_drawer.config.yaml` (baru)
 
-Definisi `layout` chocofi: 2 blok 3×5 + 3 thumb dengan stagger pinky (acuan: `sudoish/chocofi-config/keymap_drawer/chocofi.yaml` dan `keymap_drawer/draw_config.yaml`).
+```yaml
+parse_config:
+  raw_binding_map:
+    "&bootloader": "BOOT"
+    "&studio_unlock": "UNLOCK"
+```
+
+Dibaca workflow draw via `config_path` default. Tanpa ini kedua binding ke-render mentah sebagai `&bootloader` / `&studio_unlock`.
 
 ### 4.13 Git & GitHub
 
